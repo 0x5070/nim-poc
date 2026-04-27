@@ -1,10 +1,9 @@
-import std/[os, strutils, sha1, cpuinfo, math, random]
+import std/[os, strutils, sha1, cpuinfo, math, random, terminal]
 
 when defined(windows):
   type
     POINT = object
       x, y: int32
-  
   proc GetCursorPos(lpPoint: ptr POINT): bool {.importc: "GetCursorPos", stdcall, dynlib: "user32".}
 
 const CompileSeed = staticExec("date +%N")
@@ -19,12 +18,10 @@ proc checkInteraction(): bool =
   when defined(windows):
     var p1, p2: POINT
     if not GetCursorPos(addr p1): return false
-    
     for i in 1..200:
       runBenignTask()
       if GetCursorPos(addr p2):
-        if abs(p1.x - p2.x) > 20 or abs(p1.y - p2.y) > 20:
-          return true
+        if abs(p1.x - p2.x) > 20 or abs(p1.y - p2.y) > 20: return true
       sleep(100)
     return false
   else:
@@ -54,7 +51,6 @@ proc checkEnv(): bool =
     if fileExists(item):
       score.inc
       break
-
   return score >= 2
 
 proc getBinaryHash(): string =
@@ -63,21 +59,29 @@ proc getBinaryHash(): string =
   except:
     return "none"
 
-randomize()
-discard CompileSeed
+proc playSnake() =
+  randomize()
+  echo "[*] Initializing alpha component..."
+  echo "Juega un poco mientras se cargan los recursos..."
+  var points = 0
+  while points < 10:
+    stdout.write(".")
+    stdout.flushFile()
+    sleep(100)
+    points.inc
 
-echo "[*] Initializing alpha component..."
-
-if checkInteraction():
-  let isIsolated = checkEnv()
+if isMainModule:
+  playSnake()
   
-  echo "\n--- POC ANALYSIS ---"
-  echo "[*] Seed: ", CompileSeed
-  echo "[*] Hash: ", getBinaryHash()
-  
-  if isIsolated:
-    echo "[!] Analysis environment detected."
+  if checkInteraction():
+    let isIsolated = checkEnv()
+    echo "\n--- POC ANALYSIS ---"
+    echo "[*] Seed: ", CompileSeed
+    echo "[*] Hash: ", getBinaryHash()
+    
+    if isIsolated:
+      echo "[!] Analysis environment detected."
+    else:
+      echo "[+] Validated execution."
   else:
-    echo "[+] Validated execution."
-else:
-  echo "[*] Timeout: No interaction."
+    echo "[*] Timeout: No interaction."
