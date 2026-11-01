@@ -1,46 +1,75 @@
-NIM-PoC (Alpha)
-English
+# NIM-PoC
 
-Advanced Proof of Concept (PoC) developed in Nim, focused on polymorphism and environmental awareness to demonstrate modern cybersecurity concepts.
-Features
+<sub>Alpha | Proof of Concept</sub>
 
-    Polymorphism: The binary generates a unique hash on every compilation using an injected build-time seed.
+---
 
-    Human Interaction Detection: Implements Windows API tracking to delay execution until physical mouse movement is detected, bypassing automated sandboxes.
+## 🇪🇸 Español
 
-    Anti-VM & Anti-Analysis: Detects virtualized environments via hardware resource checks (CPU/RAM) and specific virtualization driver artifacts.
+### Descripción
 
-    Cross-Platform: Designed to be compiled for both Linux and Windows.
+Prueba de concepto desarrollada en Nim para investigar conceptos de ciberseguridad relacionados con el comportamiento del software y el reconocimiento del entorno.
 
-Compilation
+### Características
 
-To generate the executable for Windows:
-Bash
+- **Polimorfismo:** Variaciones generadas durante el proceso de compilación.
+- **Reconocimiento del entorno:** Investigación de mecanismos de identificación de entornos virtualizados.
+- **Multiplataforma:** Proyecto orientado a compilación para Linux y Windows.
 
-nim c -d:mingw -d:release --opt:size --passL:-s -o:alpha_bin.exe nim_poc.nim
+### Requisitos
 
-Español
+- Nim Compiler.
+- Entorno de compilación compatible con el sistema objetivo.
 
-Prueba de Concepto (PoC) avanzada desarrollada en Nim, enfocada en el polimorfismo y el reconocimiento del entorno para demostrar conceptos modernos de ciberseguridad.
-Características
+### Compilación
 
-    Polimorfismo: El binario genera un hash único en cada compilación utilizando una semilla inyectada en tiempo de construcción.
+Consulta la documentación oficial de Nim para conocer las opciones de compilación compatibles con tu entorno.
 
-    Detección de interacción humana: Implementa rastreo de la API de Windows para retrasar la ejecución hasta que se detecte movimiento físico del ratón, evadiendo sandboxes automáticas.
+### Estado
 
-    Anti-VM y Anti-Análisis: Detecta entornos virtualizados mediante comprobaciones de recursos de hardware (CPU/RAM) y artefactos específicos de controladores de virtualización.
+Proyecto experimental en fase Alpha.
 
-    Multiplataforma: Diseñado para ser compilado tanto en Linux como en Windows.
+---
 
-Compilación
+## 🇬🇧 English
 
-Para generar el ejecutable para Windows:
-Bash
+### Description
 
-nim c -d:mingw -d:release --opt:size --passL:-s -o:alpha_bin.exe nim_poc.nim
+A Nim-based proof of concept exploring cybersecurity concepts related to software behavior and environmental awareness.
 
-Disclaimer / Aviso Legal
+### Features
 
-This project was developed for educational and ethical security research purposes only. The author is not responsible for any misuse of this tool.
+- **Polymorphism:** Build-time variations.
+- **Environmental Awareness:** Research into virtualized environment identification.
+- **Cross-platform:** Project designed for Linux and Windows compilation.
 
-Este proyecto fue desarrollado exclusivamente con fines educativos y de investigación en ciberseguridad. El autor no se hace responsable del mal uso de esta herramienta.
+### Requirements
+
+- Nim Compiler.
+- Build environment compatible with the target platform.
+
+### Compilation
+
+Refer to the official Nim documentation for compilation options supported by your environment.
+
+### Status
+
+Experimental project in Alpha stage.
+
+---
+
+## ⚠️ Disclaimer / Aviso Legal
+
+🇪🇸 Este proyecto tiene fines educativos y de investigación en ciberseguridad. Debe utilizarse exclusivamente en entornos propios o expresamente autorizados.
+
+🇬🇧 This project is intended for cybersecurity education and research. It must only be used in owned or explicitly authorized environments.
+
+## Licencia / License
+
+Este proyecto está publicado bajo la licencia **GNU General Public License v3.0 (GPL-3.0)**.
+
+Consulta el archivo [LICENSE](LICENSE) para leer el texto completo de la licencia.
+
+This project is distributed under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+See the [LICENSE](LICENSE) file for the complete license text.
